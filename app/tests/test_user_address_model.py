@@ -24,25 +24,37 @@ class TestCase(django.test.TestCase):
         self.assertTrue(hasattr(UserAddress, 'full_address'))
 
     def test_full_address_1(self):
-        m = UserAddress.objects.get(id=1)
+        m = UserAddress(user_id=1,
+                        name='Max',
+                        city='Giventown')
         m.save()
         self.assertEqual(m.full_address,
                          '\nNone\nNone Giventown None ')
 
     def test_full_address_2(self):
-        m = UserAddress.objects.get(id=2)
+        m = UserAddress(user_id=1,
+                        name='Max Mustermann',
+                        street_address='Randomstreet',
+                        city='Giventown')
         m.save()
         self.assertEqual(m.full_address,
                          'Randomstreet\nNone\nNone Giventown None ')
 
     def test_full_address_3(self):
-        m = UserAddress.objects.get(id=3)
+        m = UserAddress(user_id=1,
+                        name='Max Mustermann',
+                        street_address='456 Randomstreet',
+                        city='Giventown')
         m.save()
         self.assertEqual(m.full_address,
                          '456 Randomstreet\nNone\nNone Giventown None ')
 
     def test_full_address_4(self):
-        m = UserAddress.objects.get(id=4)
+        m = UserAddress(user_id=1,
+                        name='Max Mustermann',
+                        street_address='789 Otherstreet',
+                        city='Giventown',
+                        country='NL')
         m.save()
         self.assertEqual(m.full_address,
                          '789 Otherstreet\nNone\nNone Giventown None NL')
