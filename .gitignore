@@ -1,3 +1,13 @@
+# Temporary
+.*
+
+# Configs
+!.gitignore
+!.flake8rc
+!.coveragerc
+!.coveralls.yml
+!.travis.yml
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

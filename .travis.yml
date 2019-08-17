@@ -1,0 +1,17 @@
+dist: xenial
+
+language: python
+python:
+  - "3.7"
+  - "3.7-dev"
+
+install:
+  - pip install -r ./requirements.txt
+
+script:
+  - flake8 --config=.flake8rc ./app
+  - coverage run --source=app ./app/manage.py test
+  - coverage report -m
+
+after_success:
+  - coveralls
