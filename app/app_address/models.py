@@ -56,10 +56,6 @@ class UserAddress(models.Model):
         if self.street_address_line2:
             street_address2__tags.append(self.street_address_line2)
 
-        zip_code__tags = (self.zipcode or '').split(' ')
-        if self.zipcode:
-            zip_code__tags.append(self.zipcode)
-
         city__tags = (self.city or '').split(' ')
         if self.city:
             city__tags.append(self.city)
@@ -67,10 +63,6 @@ class UserAddress(models.Model):
         state__tags = (self.state or '').split(' ')
         if self.state:
             state__tags.append(self.state)
-
-        country__tags = (self.country or '').split(' ')
-        if self.country:
-            country__tags.append(self.country)
 
         q = self.__class__.objects.filter(
             models.Q(
@@ -92,7 +84,9 @@ class UserAddress(models.Model):
                 models.Q(street_address_line2__isnull=True)
             ) &
             (
-                models.Q(zipcode__in=zip_code__tags) |
+                # it's a zip code, it can not be part filled
+                # it's filled or not filled, simple
+                models.Q(zipcode=self.zipcode or None) |
                 models.Q(zipcode='') |
                 models.Q(zipcode__isnull=True)
             ) &
@@ -107,9 +101,10 @@ class UserAddress(models.Model):
                 models.Q(state__isnull=True)
             ) &
             (
-                models.Q(country__in=country__tags) |
-                models.Q(country='') |
-                models.Q(country__isnull=True)
+                # it's a country code, it can not be part filled
+                # it's filled or not filled, simple
+                models.Q(country=self.country or '') |
+                models.Q(country='')
             )
         )
         return q
