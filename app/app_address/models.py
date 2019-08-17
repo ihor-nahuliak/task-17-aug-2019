@@ -26,5 +26,13 @@ class UserAddress(models.Model):
     full_address = models.TextField(
         blank=True)
 
+    def save(self, *args, **kwargs):
+        # It puts None values to the full_address,
+        # but I didn't change that task logic.
+        streetdata = f'{self.street_address}\n{self.street_address_line2}'
+        self.full_address = (f'{streetdata}\n{self.zipcode} {self.city} '
+                             f'{self.state} {self.country}')
+        super().save(*args, **kwargs)
+
     class Meta:
         app_label = 'app_address'

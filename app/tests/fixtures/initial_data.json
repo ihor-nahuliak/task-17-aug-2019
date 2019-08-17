@@ -1,1 +1,50 @@
-[]
+[
+  {
+    "model": "auth.User",
+    "pk": 1,
+    "fields": {
+      "username": "test",
+      "email": "test@localhost"
+    }
+  },
+  {
+    "model": "app_address.UserAddress",
+    "pk": 1,
+    "fields": {
+      "user_id": 1,
+      "name": "Max",
+      "city": "Giventown"
+    }
+  },
+  {
+    "model": "app_address.UserAddress",
+    "pk": 2,
+    "fields": {
+      "user_id": 1,
+      "name": "Max Mustermann",
+      "street_address": "Randomstreet",
+      "city": "Giventown"
+    }
+  },
+  {
+    "model": "app_address.UserAddress",
+    "pk": 3,
+    "fields": {
+      "user_id": 1,
+      "name": "Max Mustermann",
+      "street_address": "456 Randomstreet",
+      "city": "Giventown"
+    }
+  },
+  {
+    "model": "app_address.UserAddress",
+    "pk": 4,
+    "fields": {
+      "user_id": 1,
+      "name": "Max Mustermann",
+      "street_address": "789 Otherstreet",
+      "city": "Giventown",
+      "country": "NL"
+    }
+  }
+]
