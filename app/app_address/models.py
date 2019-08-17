@@ -70,13 +70,11 @@ class UserAddress(models.Model):
             ) &
             (
                 models.Q(name__in=name__tags) |
-                models.Q(name='') |
-                models.Q(name__isnull=True)
+                models.Q(name='')
             ) &
             (
                 models.Q(street_address__in=street_address__tags) |
-                models.Q(street_address='') |
-                models.Q(street_address__isnull=True)
+                models.Q(street_address='')
             ) &
             (
                 models.Q(street_address_line2__in=street_address2__tags) |
